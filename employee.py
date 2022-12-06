@@ -24,9 +24,9 @@ class Employee:
         if(self.contract_type == "hourly_contract"):
             self.total_pay = self.work_hour * self.hourly_payment
             contract_text +=self.hourly_contract()
-        if(self.contract_number != None):
+        if(self.contract_payment != None):
+            if (self.contract_number) != None:
                 contract_text +=self.get_commission()
-        else:
             contract_text +=self.get_bonusCommission()
         return contract_text
 
@@ -53,7 +53,7 @@ class Employee:
         return self.total_pay
 
     def __str__(self):
-        return f'^{self.name} works on a {self.setType()}.\s+Their total pay is {self.set_pay()}.$'
+        return f"^{self.name} works on a {self.setType()}.\s+Their total pay is {self.set_pay()}.$"
 
 # Billie works on a monthly salary of 4000.  Their total pay is 4000.
 billie = Employee('Billie',4000,"salary_contract",None,None,None,None)
