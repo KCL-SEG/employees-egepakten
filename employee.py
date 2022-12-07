@@ -14,11 +14,11 @@ class Employee:
         self.contract_payment = contract_payment
 
 
-     def salary_contract(self):
+    def salary_contract(self):
          # Earn montly salary
          return f"monthly salary of {self.get_pay()}"
 
-     def checkType(self):
+    def checkType(self):
          contract_text = ""
          if(self.contract_type == "salary_contract"):
              contract_text += self.salary_contract()
@@ -28,14 +28,14 @@ class Employee:
              contract_text +=self.commission()
          return contract_text
 
-     def get_pay(self):
+    def get_pay(self):
          return self.total_pay
 
-     def hourly_contract(self):
+    def hourly_contract(self):
          self.total_pay = self.work_hour * self.hourly_payment
          return f"contract of {self.work_hour} hours at {self.hourly_payment}/hour"
 
-     def commission(self):
+    def commission(self):
          if (self.contract_number != None): #its not bonus
              self.total_pay += self.contract_number * self.contract_payment
              return f" and receives a commission for {self.contract_number } contract(s) at {self.contract_payment}/contract"
@@ -43,7 +43,7 @@ class Employee:
              self.total_pay +=self.contract_payment
              return f" and receives a bonus commission of {self.contract_payment}"
 
-     def __str__(self):
+    def __str__(self):
          return f"{self.name} works on a {self.checkType()}.  Their total pay is {self.get_pay()}."
 
 # Billie works on a monthly salary of 4000.  Their total pay is 4000.
