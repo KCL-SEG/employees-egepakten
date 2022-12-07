@@ -53,7 +53,7 @@ class Employee:
         return self.total_pay
 
     def __str__(self):
-        return f"^{self.name} works on a {self.setType()}.\s+Their total pay is {self.set_pay()}.$"
+        return f"^{self.name} works on a {self.setType()}.\\s+Their total pay is {self.set_pay()}.$"
 
 # Billie works on a monthly salary of 4000.  Their total pay is 4000.
 billie = Employee('Billie',4000,"salary_contract",None,None,None,None)
