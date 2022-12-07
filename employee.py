@@ -13,47 +13,38 @@ class Employee:
         self.contract_number = contract_number
         self.contract_payment = contract_payment
 
-    def salary_contract(self):
-        # Earn montly salary
-        return f"monthly salary of {self.total_pay}"
 
-    def setType(self):
-        contract_text = ""
-        if(self.contract_type == "salary_contract"):
-            contract_text += self.salary_contract()
-        if(self.contract_type == "hourly_contract"):
-            self.total_pay = self.work_hour * self.hourly_payment
-            contract_text +=self.hourly_contract()
-        if(self.contract_payment != None):
-            if (self.contract_number) != None:
-                contract_text +=self.get_commission()
-            contract_text +=self.get_bonusCommission()
-        return contract_text
+     def salary_contract(self):
+         # Earn montly salary
+         return f"monthly salary of {self.get_pay()}"
 
-    def get_commission(self):
-        return f" and receives a commission for {self.contract_number} contract(s) at {self.contract_payment}/contract"
+     def checkType(self):
+         contract_text = ""
+         if(self.contract_type == "salary_contract"):
+             contract_text += self.salary_contract()
+         if(self.contract_type == "hourly_contract"):
+             contract_text +=self.hourly_contract()
+         if(self.contract_payment != None):
+             contract_text +=self.commission()
+         return contract_text
 
-    def get_bonusCommission(self):
-        return f" and receives a bonus commission of {self.contract_payment}"
+     def get_pay(self):
+         return self.total_pay
 
-    def hourly_contract(self):
-        return f"contract of {self.work_hour} hours at {self.hourly_payment}/hour"
+     def hourly_contract(self):
+         self.total_pay = self.work_hour * self.hourly_payment
+         return f"contract of {self.work_hour} hours at {self.hourly_payment}/hour"
 
-    def set_pay(self):
-        if (self.contract_number != None):
-            self.total_pay += self.contract_number * self.contract_payment
-            self.get_commission()
-        else:
-            if (self.contract_payment != None):
-                self.total_pay +=self.contract_payment
-                self.get_bonusCommission()
-        return self.total_pay
+     def commission(self):
+         if (self.contract_number != None): #its not bonus
+             self.total_pay += self.contract_number * self.contract_payment
+             return f" and receives a commission for {self.contract_number } contract(s) at {self.contract_payment}/contract"
+         else:
+             self.total_pay +=self.contract_payment
+             return f" and receives a bonus commission of {self.contract_payment}"
 
-    def get_pay(self):
-        return self.total_pay
-
-    def __str__(self):
-        return f"{self.name} works on a {self.setType()}.\s+Their total pay is {self.set_pay()}.$"
+     def __str__(self):
+         return f"{self.name} works on a {self.checkType()}.  Their total pay is {self.get_pay()}."
 
 # Billie works on a monthly salary of 4000.  Their total pay is 4000.
 billie = Employee('Billie',4000,"salary_contract",None,None,None,None)
